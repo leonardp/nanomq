@@ -1,8 +1,8 @@
 #ifndef HASH_H
 #define HASH_H
 
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -34,7 +34,7 @@ void add_topic(uint32_t id, char *val);
 
 bool check_topic(uint32_t id, char *val);
 
-struct topic_queue *get_topic(uint32_t id); 
+struct topic_queue *get_topic(uint32_t id);
 
 void del_topic_one(uint32_t id, char *topic);
 

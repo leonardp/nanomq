@@ -20,60 +20,60 @@ if (DEBUG AND ASAN)
   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -fsanitize=address")
 endif (DEBUG AND ASAN)
 
-# # Build Types
-# set(CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE}
-#     CACHE STRING "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel tsan asan lsan msan ubsan"
-#     FORCE)
-# 
-# # ThreadSanitizer
-# set(CMAKE_C_FLAGS_TSAN
-#     "-fsanitize=thread -g -O1"
-#     CACHE STRING "Flags used by the C compiler during ThreadSanitizer builds."
-#     FORCE)
-# set(CMAKE_CXX_FLAGS_TSAN
-#     "-fsanitize=thread -g -O1"
-#     CACHE STRING "Flags used by the C++ compiler during ThreadSanitizer builds."
-#     FORCE)
-# 
-# # AddressSanitize
-# set(CMAKE_C_FLAGS_ASAN
-#     "-fsanitize=address -fno-optimize-sibling-calls -fsanitize-address-use-after-scope -fno-omit-frame-pointer -g -O1"
-#     CACHE STRING "Flags used by the C compiler during AddressSanitizer builds."
-#     FORCE)
-# set(CMAKE_CXX_FLAGS_ASAN
-#     "-fsanitize=address -fno-optimize-sibling-calls -fsanitize-address-use-after-scope -fno-omit-frame-pointer -g -O1"
-#     CACHE STRING "Flags used by the C++ compiler during AddressSanitizer builds."
-#     FORCE)
-# 
-# # LeakSanitizer
-# set(CMAKE_C_FLAGS_LSAN
-#     "-fsanitize=leak -fno-omit-frame-pointer -g -O1"
-#     CACHE STRING "Flags used by the C compiler during LeakSanitizer builds."
-#     FORCE)
-# set(CMAKE_CXX_FLAGS_LSAN
-#     "-fsanitize=leak -fno-omit-frame-pointer -g -O1"
-#     CACHE STRING "Flags used by the C++ compiler during LeakSanitizer builds."
-#     FORCE)
-# 
-# # MemorySanitizer
-# set(CMAKE_C_FLAGS_MSAN
-#     "-fsanitize=memory -fno-optimize-sibling-calls -fsanitize-memory-track-origins=2 -fno-omit-frame-pointer -g -O2"
-#     CACHE STRING "Flags used by the C compiler during MemorySanitizer builds."
-#     FORCE)
-#  set(CMAKE_CXX_FLAGS_MSAN
-#      "-fsanitize=memory -fno-optimize-sibling-calls -fsanitize-memory-track-origins=2 -fno-omit-frame-pointer -g -O2"
-#      CACHE STRING "Flags used by the C++ compiler during MemorySanitizer builds."
-#      FORCE)
-# 
-# # UndefinedBehaviour
-# set(CMAKE_C_FLAGS_UBSAN
-#     "-fsanitize=undefined"
-#     CACHE STRING "Flags used by the C compiler during UndefinedBehaviourSanitizer builds."
-#     FORCE)
-# set(CMAKE_CXX_FLAGS_UBSAN
-#     "-fsanitize=undefined"
-#     CACHE STRING "Flags used by the C++ compiler during UndefinedBehaviourSanitizer builds."
-#     FORCE)
+# Build Types
+set(CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE}
+    CACHE STRING "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel tsan asan lsan msan ubsan"
+    FORCE)
+
+# ThreadSanitizer
+set(CMAKE_C_FLAGS_TSAN
+    "-fsanitize=thread -g -O1"
+    CACHE STRING "Flags used by the C compiler during ThreadSanitizer builds."
+    FORCE)
+set(CMAKE_CXX_FLAGS_TSAN
+    "-fsanitize=thread -g -O1"
+    CACHE STRING "Flags used by the C++ compiler during ThreadSanitizer builds."
+    FORCE)
+
+# AddressSanitize
+set(CMAKE_C_FLAGS_ASAN
+    "-fsanitize=address -fno-optimize-sibling-calls -fsanitize-address-use-after-scope -fno-omit-frame-pointer -g -O1"
+    CACHE STRING "Flags used by the C compiler during AddressSanitizer builds."
+    FORCE)
+set(CMAKE_CXX_FLAGS_ASAN
+    "-fsanitize=address -fno-optimize-sibling-calls -fsanitize-address-use-after-scope -fno-omit-frame-pointer -g -O1"
+    CACHE STRING "Flags used by the C++ compiler during AddressSanitizer builds."
+    FORCE)
+
+# LeakSanitizer
+set(CMAKE_C_FLAGS_LSAN
+    "-fsanitize=leak -fno-omit-frame-pointer -g -O1"
+    CACHE STRING "Flags used by the C compiler during LeakSanitizer builds."
+    FORCE)
+set(CMAKE_CXX_FLAGS_LSAN
+    "-fsanitize=leak -fno-omit-frame-pointer -g -O1"
+    CACHE STRING "Flags used by the C++ compiler during LeakSanitizer builds."
+    FORCE)
+
+# MemorySanitizer
+set(CMAKE_C_FLAGS_MSAN
+    "-fsanitize=memory -fno-optimize-sibling-calls -fsanitize-memory-track-origins=2 -fno-omit-frame-pointer -g -O2"
+    CACHE STRING "Flags used by the C compiler during MemorySanitizer builds."
+    FORCE)
+ set(CMAKE_CXX_FLAGS_MSAN
+     "-fsanitize=memory -fno-optimize-sibling-calls -fsanitize-memory-track-origins=2 -fno-omit-frame-pointer -g -O2"
+     CACHE STRING "Flags used by the C++ compiler during MemorySanitizer builds."
+     FORCE)
+
+# UndefinedBehaviour
+set(CMAKE_C_FLAGS_UBSAN
+    "-fsanitize=undefined"
+    CACHE STRING "Flags used by the C compiler during UndefinedBehaviourSanitizer builds."
+    FORCE)
+set(CMAKE_CXX_FLAGS_UBSAN
+    "-fsanitize=undefined"
+    CACHE STRING "Flags used by the C++ compiler during UndefinedBehaviourSanitizer builds."
+    FORCE)
 
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
@@ -94,7 +94,7 @@ find_package(Threads)
 # find_package(nng CONFIG REQUIRED)
 
 # list of source files
-set(libsrc hash.cc mqtt_db.c zmalloc.c conf.c file.c cmd.c)
+set(libsrc hash.cc mqtt_db.c zmalloc.c) # conf.c file.c cmd.c)
 
 # this is the "object library" target: compiles the sources only once
 add_library(nanolib OBJECT ${libsrc})
