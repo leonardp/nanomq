@@ -631,6 +631,7 @@ broker_start(int argc, char **argv)
 	}
 
 	conf *nanomq_conf;
+	char *conf_path = NULL;
 
 	if ((nanomq_conf = nng_zalloc(sizeof(conf))) == NULL) {
 		fprintf(stderr,
@@ -640,13 +641,12 @@ broker_start(int argc, char **argv)
 
 	nanomq_conf->parallel = PARALLEL;
 	conf_init(&nanomq_conf);
-	conf_parser(&nanomq_conf, CONF_PATH_NAME);
 
 	for (i = 0; i < argc; i++, temp = 0) {
 		if (!strcmp("-conf", argv[i])) {
 			debug_msg("reading user specified conf file:%s",
 			    argv[i + 1]);
-			conf_parser(&nanomq_conf, argv[++i]);
+			conf_path = argv[++i];
 		} else if (!strcmp("-daemon", argv[i])) {
 			nanomq_conf->daemon = true;
 		} else if (!strcmp("-tq_thread", argv[i]) &&
@@ -689,7 +689,10 @@ broker_start(int argc, char **argv)
 			print_usage();
 			exit(EXIT_FAILURE);
 		}
+
 	}
+
+	conf_parser(&nanomq_conf, conf_path);
 
 	if (nanomq_conf->url == NULL) {
 		fprintf(stderr,
